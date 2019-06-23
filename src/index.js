@@ -7,7 +7,7 @@ import axios from 'axios'
 
 registerBlockType ( 'tk/ogp-card-block', {
     title: 'LinkOGPCard',
-    icon: 'smiley',
+    icon: 'feedback',
     category: 'layout',
     attributes: {
 		title: {
@@ -113,7 +113,7 @@ registerBlockType ( 'tk/ogp-card-block', {
                     <div className={ this.props.className }>
                         <a href={this.props.attributes.url} target="_blank">
                             <div className="ogp-card-block-thumbnail">
-                            <img className="recipe-image" src={ this.props.attributes.image  }  /> 
+                            <img className="image" src={ this.props.attributes.image  }  /> 
                             </div>
                             <div class="ogp-card-block-detail">
                                 <div class="ogp-card-block-content">

@@ -2251,7 +2251,7 @@ var RichText = wp.editor.RichText;
 
 registerBlockType('tk/ogp-card-block', {
   title: 'LinkOGPCard',
-  icon: 'smiley',
+  icon: 'feedback',
   category: 'layout',
   attributes: {
     title: {
@@ -2395,7 +2395,7 @@ registerBlockType('tk/ogp-card-block', {
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
             className: "ogp-card-block-thumbnail"
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("img", {
-            className: "recipe-image",
+            className: "image",
             src: this.props.attributes.image
           })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
             class: "ogp-card-block-detail"
