@@ -1,0 +1,57 @@
+.wp-block-tk-ogp-card-block a  {
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+    border: solid 1px #ccc;
+    margin:0;
+    border-radius: 4px;
+    display: flex;
+    width: 100%;
+    margin: 20px auto;
+    color: #333;
+    word-wrap: break-word;
+    overflow:hidden;
+    line-height: 1.4em;
+    text-decoration: none;
+}
+.wp-block-tk-ogp-card-block a:hover {
+    text-decoration: none;
+    color: #333;
+    background-color: #f1f1f1;
+}
+.wp-block-tk-ogp-card-block a .ogp-card-block-thumbnail {
+    width: 33%;
+    padding: 10px;
+}
+
+.wp-block-tk-ogp-card-block a .ogp-card-block-thumbnail img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.wp-block-tk-ogp-card-block a .ogp-card-block-detail {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wp-block-tk-ogp-card-block a .ogp-card-block-detail p {
+    margin-bottom: 0;
+    word-wrap: break-word;
+}
+.wp-block-tk-ogp-card-block a .ogp-card-block-detail p.title {
+    font-weight: bold;
+    margin-bottom: 5px;  
+}
+.wp-block-tk-ogp-card-block a .ogp-card-block-detail p.description {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.wp-block-tk-ogp-card-block a .ogp-card-block-detail p.domain {
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #aaa;
+    text-align: right;
+}
