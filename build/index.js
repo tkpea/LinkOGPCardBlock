@@ -2324,7 +2324,6 @@ registerBlockType('tk/ogp-card-block', {
           params.append('action', 'myplugin_get_ogp');
           params.append('url', this.props.attributes.url);
           axios__WEBPACK_IMPORTED_MODULE_8___default.a.post('/wp-admin/admin-ajax.php', params).then(function (response) {
-            console.log(response.data);
             var json = response.data;
 
             _this2.setState({
@@ -2345,9 +2344,6 @@ registerBlockType('tk/ogp-card-block', {
             _this2.props.setAttributes({
               domain: _this2.props.attributes.url.match(/^https?:\/{2,}(.*?)(?:\/|\?|#|$)/)[1]
             });
-
-            var html = '<div class="test"><p>アイウエオおアフェjf愛j</p></div>';
-            console.log(_this2.props.attributes);
 
             if (json.image) {
               _this2.props.setAttributes({

@@ -67,7 +67,6 @@ registerBlockType ( 'tk/ogp-card-block', {
              
                 axios.post('/wp-admin/admin-ajax.php',params
                 ).then((response) =>{
-                    console.log(response.data)
                     const json = response.data
                     this.setState({
                         isLoading: false,
@@ -77,8 +76,6 @@ registerBlockType ( 'tk/ogp-card-block', {
                     this.props.setAttributes({title: json.title})
                     this.props.setAttributes({description: json.description})                    
                     this.props.setAttributes({domain: this.props.attributes.url.match(/^https?:\/{2,}(.*?)(?:\/|\?|#|$)/)[1]})   
-                    let html = '<div class="test"><p>アイウエオおアフェjf愛j</p></div>';               
-                    console.log(this.props.attributes);
                     if (json.image) {
                         this.props.setAttributes({ image: json.image})
                                                 
