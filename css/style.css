@@ -55,6 +55,7 @@
     word-wrap: break-word;
 }
 .wp-block-tk-ogp-card-block a .ogp-card-block-detail p.title {
+    margin-top: 0;
     font-weight: bold;
     margin-bottom: 5px;  
     font-size: 14px;
