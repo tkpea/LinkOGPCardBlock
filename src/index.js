@@ -150,15 +150,19 @@ registerBlockType ( 'tk/ogp-card-block', {
         return (
             <div className={ className }>
                 <a href={url} target="_blank">
+		
+                       
                 {(() => {
-                    if (this.props.attributes.image){
+                    if (image){
                         return (
                             <div className="ogp-card-block-thumbnail">
-                            <img className="image" src={ this.props.attributes.image  }  /> 
+                            <img className="image" src={ image  }  /> 
                             </div>
                         )
                     }
                 }) () }                    
+     
+
                     <div class="ogp-card-block-detail">
                         <div class="ogp-card-block-content">
                             <p className="title">{title}</p>
