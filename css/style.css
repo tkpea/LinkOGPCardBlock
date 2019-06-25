@@ -1,4 +1,5 @@
 .wp-block-tk-ogp-card-block a  {
+    position: relative;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     border: solid 1px #ccc;
     margin:0;
@@ -12,7 +13,7 @@
     text-decoration: none;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;   
+    align-items: flex-start;
 }
 .wp-block-tk-ogp-card-block a:hover {
     text-decoration: none;
@@ -72,4 +73,7 @@
     color: #aaa;
     text-align: right;
     font-size: 11px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
