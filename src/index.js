@@ -112,9 +112,17 @@ registerBlockType ( 'tk/ogp-card-block', {
                 return (
                     <div className={ this.props.className }>
                         <a href={this.props.attributes.url} target="_blank">
-                            <div className="ogp-card-block-thumbnail">
-                            <img className="image" src={ this.props.attributes.image  }  /> 
-                            </div>
+                       
+                            {(() => {
+                                if (this.props.attributes.image){
+                                    return (
+                                        <div className="ogp-card-block-thumbnail">
+                                        <img className="image" src={ this.props.attributes.image  }  /> 
+                                        </div>
+                                    )
+                                }
+                            }) () }
+
                             <div class="ogp-card-block-detail">
                                 <div class="ogp-card-block-content">
                                     <RichText.Content tagName="p" className="title" value={ this.props.attributes.title } />

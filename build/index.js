@@ -2392,12 +2392,16 @@ registerBlockType('tk/ogp-card-block', {
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("a", {
             href: this.props.attributes.url,
             target: "_blank"
-          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
-            className: "ogp-card-block-thumbnail"
-          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("img", {
-            className: "image",
-            src: this.props.attributes.image
-          })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+          }, function () {
+            if (_this3.props.attributes.image) {
+              return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+                className: "ogp-card-block-thumbnail"
+              }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("img", {
+                className: "image",
+                src: _this3.props.attributes.image
+              }));
+            }
+          }(), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
             class: "ogp-card-block-detail"
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
             class: "ogp-card-block-content"
