@@ -28,7 +28,7 @@ registerBlockType ( 'tk/ogp-card-block', {
 		domain: {
 			type: 'array',
 			source: 'children',
-            selector: '.link-card__omain',
+            selector: '.link-card__domain',
 		},                        
 		imageSrc: {
 			type: 'string',
