@@ -2,7 +2,7 @@ const { registerBlockType } = wp.blocks;
 const { Component } = wp.element;
 const { RichText} = wp.editor;
 import { TextControl, Button, ExternalLink } from '@wordpress/components';
-import apiFetch from '@wordpress/api-fetch';
+import { sprintf, _n } from '@wordpress/i18n';
 import axios from 'axios'
 
 registerBlockType ( 'tk/ogp-card-block', {
@@ -13,46 +13,42 @@ registerBlockType ( 'tk/ogp-card-block', {
 		title: {
 			type: 'array',
 			source: 'children',
-			selector: '.title',
+			selector: '.link-card__title',
         },
 		url: {
 			type: 'string',
 			source: 'children',
-			selector: '.url',
+			selector: '.link-card__anchor',
         }, 
 		description: {
 			type: 'array',
 			source: 'children',
-			selector: '.description',
+			selector: '.link-card__description',
         }, 
 		domain: {
 			type: 'array',
 			source: 'children',
-            selector: '.domain',
+            selector: '.link-card__omain',
 		},                        
-		image: {
+		imageSrc: {
 			type: 'string',
 			source: 'attribute',
-			selector: 'img',
+			selector: '.link-card__image',
 			attribute: 'src',
         },
-        content: {
-			type: 'array',
-			source: 'html',
-			selector: '.content',
-        },       
-        
+		imageAlt: {
+			type: 'string',
+			source: 'attribute',
+            attribute: 'alt',
+            selector: '.link-card__image'            
+        },             
     },
     edit: class extends Component{   
         constructor(props) {
             super(...arguments)
             this.props = props
             this.state={
-                url: '',
                 isLoading: false,
-                isError: false,
-                message: '',
-                ogp: null,
             }
         }
         getOGP(){
@@ -64,20 +60,18 @@ registerBlockType ( 'tk/ogp-card-block', {
                 let params = new URLSearchParams()
                 params.append('action','myplugin_get_ogp')
                 params.append('url',this.props.attributes.url )
-             
                 axios.post('/wp-admin/admin-ajax.php',params
                 ).then((response) =>{
                     const json = response.data
                     this.setState({
                         isLoading: false,
-                        ogp:json,
                     })
-                    console.log(json)
                     this.props.setAttributes({title: json.title})
                     this.props.setAttributes({description: json.description})                    
                     this.props.setAttributes({domain: this.props.attributes.url.match(/^https?:\/{2,}(.*?)(?:\/|\?|#|$)/)[1]})   
                     if (json.image) {
-                        this.props.setAttributes({ image: json.image})
+                        this.props.setAttributes({ imageSrc: json.image})
+                        this.props.setAttributes({ imageAlt: json.title})
                                                 
                     }
                 }).catch((err)=>{
@@ -87,16 +81,16 @@ registerBlockType ( 'tk/ogp-card-block', {
             }
         }
         render () {
-            
+            console.log(wp)
             if( this.props.attributes.title[0] == undefined){  
                 return (
                     <div className="components-placeholder">
                         <div className="components-placeholder__label">
-                            OGPカード
+                            { sprintf(_n('Link OGP Card')) }
                         </div>
                         <div style={{"width":"90%"}}>
                             <TextControl
-                            label="URLを入力"
+                            label={sprintf(_n('URLを入力してください')) }
                             onChange={(val)=>{
                                 this.props.setAttributes({ url: val})
                             }}
@@ -104,31 +98,31 @@ registerBlockType ( 'tk/ogp-card-block', {
                             <Button 
                             isPrimary="true"
                             onClick={()=>this.getOGP()}
-                            >OGPを読み込む!</Button>
+                            >{sprintf(_n('カードを生成')) }</Button>
                         </div>
                     </div>
                 )                    
-            } else {
+            } else {            
                 return (
                     <div className={ this.props.className }>
                         <a href={this.props.attributes.url} target="_blank">
                        
                             {(() => {
-                                if (this.props.attributes.image){
+                                if (this.props.attributes.imageSrc){
                                     return (
-                                        <div className="ogp-card-block-thumbnail">
-                                        <img className="image" src={ this.props.attributes.image  }  /> 
+                                        <div className="link-card__thumbnail-col">
+                                        <img className="link-card__image" src={ this.props.attributes.imageSrc }  alt={ this.props.attributes.imageAlt } /> 
                                         </div>
                                     )
                                 }
                             }) () }
 
-                            <div class="ogp-card-block-detail">
-                                <div class="ogp-card-block-content">
-                                    <RichText.Content tagName="p" className="title" value={ this.props.attributes.title } />
-                                    <RichText.Content tagName="p" className="description" value={ this.props.attributes.description } />
+                            <div class="link-card__detail-col">
+                                <div class="link-card__content">
+                                    <RichText.Content tagName="p" className="link-card__title" value={ this.props.attributes.title } />
+                                    <RichText.Content tagName="p" className="link-card__description" value={ this.props.attributes.description } />
                                 </div>
-                                <RichText.Content tagName="p" className="domain" value={ this.props.attributes.domain } />
+                                <RichText.Content tagName="p" className="link-card__domain" value={ this.props.attributes.domain } />
                             </div>
                         </a>  
                     </div>
@@ -141,40 +135,35 @@ registerBlockType ( 'tk/ogp-card-block', {
             className,
             attributes:{
                 title,
-                image,
+                imageSrc,
+                imageAlt,
                 description,
                 domain,
-                url                
+                url,
             }
         } = props
         return (
             <div className={ className }>
-                <a href={url} target="_blank">
-		
-                       
+                <a href={url} target="_blank" className="link-card__anchor">
                 {(() => {
-                    if (image){
+                    if (imageSrc){
                         return (
-                            <div className="ogp-card-block-thumbnail">
-                            <img className="image" src={ image  }  /> 
+                            <div className="link-card__thumbnail-col">
+                            <img className="link-card__image" src={ imageSrc  } alt={ imageAlt }  /> 
                             </div>
                         )
                     }
                 }) () }                    
      
-
-                    <div class="ogp-card-block-detail">
-                        <div class="ogp-card-block-content">
-                            <p className="title">{title}</p>
-                            <RichText.Content tagName="p" className="description" value={ description } />
+                    <div class="link-card__detail-col">
+                        <div class="link-card__content">
+                            <p className="link-card__title">{title}</p>
+                            <RichText.Content tagName="p" className="link-card__description" value={ description } />
                         </div>
-                        <RichText.Content tagName="p" className="domain" value={ domain } />
+                        <RichText.Content tagName="p" className="link-card__domain" value={ domain } />
                     </div>
                 </a>
             </div>
         )
-
-    
-      }
+    }
 });
-

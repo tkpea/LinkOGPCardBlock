@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: LinkCardBlock
+Plugin Name: LinkOGPCardBlock
 Plugin URI: (プラグインの説明と更新を示すページの URI)
 Description: (プラグインの短い説明)
 Version: (プラグインのバージョン番号。例: 1.0)
@@ -8,8 +8,10 @@ Author: (プラグイン作者の名前)
 Author URI: (プラグイン作者の URI)
 License: (ライセンス名の「スラッグ」 例: GPL2)
 */
-require_once(plugin_dir_path(__FILE__) . 'lib/OpenGraph.php');
-class LinkCardBlock
+if (!class_exists("OpenGraph")) {
+    require_once(plugin_dir_path(__FILE__) . 'lib/OpenGraph.php');
+}
+class LinkOGPCardBlock
 {
     public function __construct()
     {
@@ -32,19 +34,15 @@ class LinkCardBlock
     private function getOGP()
     {
         add_action('wp_ajax_myplugin_get_ogp', function () {
-
             $graph = OpenGraph::fetch($_POST["url"]);
-
-
             $array = [];
             foreach ($graph as $key => $val) {
                 $array += [$key => $val, "UTF-8", "auto"];
             }
-
             echo json_encode($array);
             die();
         });
     }
 }
 
-new LinkCardBlock();
+new LinkOGPCardBlock();
