@@ -24,7 +24,6 @@ class LinkOGPCardBlock
         add_action('enqueue_block_editor_assets', function () {
             wp_enqueue_style($this->name   . '_style', plugins_url('css/style.css', __FILE__));
             wp_enqueue_script($this->name  . '_script', plugins_url('build/index.js', __FILE__), array(), "", true);
-            add_action($this->name  . '_styles', 'add_link_card_block_editor_admin_styles');
         });
 
         add_action('wp_enqueue_scripts', function () {
