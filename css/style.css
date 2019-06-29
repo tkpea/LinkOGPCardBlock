@@ -1,4 +1,4 @@
-.wp-block-tk-ogp-card-block a  {
+.wp-block-tk-link-ogp-card-block a  {
     position: relative;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     border: solid 1px #ccc;
@@ -15,22 +15,22 @@
     flex-wrap: wrap;
     align-items: flex-start;
 }
-.wp-block-tk-ogp-card-block a:hover {
+.wp-block-tk-link-ogp-card-block a:hover {
     text-decoration: none;
     color: #333;
     background-color: #f1f1f1;
 }
-.wp-block-tk-ogp-card-block a .link-card__thumbnail-col {
+.wp-block-tk-link-ogp-card-block a .link-card__thumbnail-col {
     position: relative;
     width: 20%;
     margin: 10px;
 }
-.wp-block-tk-ogp-card-block a .link-card__thumbnail-col::before {
+.wp-block-tk-link-ogp-card-block a .link-card__thumbnail-col::before {
     content: "";
     display: block;
     padding-top: 100%;   
 }
-.wp-block-tk-ogp-card-block a .link-card__thumbnail-col .link-card__image {
+.wp-block-tk-link-ogp-card-block a .link-card__thumbnail-col .link-card__image {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -42,7 +42,7 @@
     object-fit: cover;
 }
 
-.wp-block-tk-ogp-card-block a .link-card__detail-col {
+.wp-block-tk-link-ogp-card-block a .link-card__detail-col {
     padding: 10px;
     flex: 1;
     display: flex;
@@ -50,25 +50,25 @@
     justify-content: space-between;
 }
 
-.wp-block-tk-ogp-card-block a .link-card__detail-col p {
+.wp-block-tk-link-ogp-card-block a .link-card__detail-col p {
     margin-bottom: 0;
     word-wrap: break-word;
 }
-.wp-block-tk-ogp-card-block a .link-card__detail-col p.link-card__title {
+.wp-block-tk-link-ogp-card-block a .link-card__detail-col p.link-card__title {
     margin-top: 0;
     font-weight: bold;
     margin-bottom: 5px;  
     font-size: 14px;
     line-height: 1.6;
 }
-.wp-block-tk-ogp-card-block a .link-card__detail-col p.link-card__description {
+.wp-block-tk-link-ogp-card-block a .link-card__detail-col p.link-card__description {
     font-size: 11px;
     color: #666;
     margin-bottom: 10px;
     line-height: 1.6;
 }
 
-.wp-block-tk-ogp-card-block a .link-card__detail-col p.link-card__domain {
+.wp-block-tk-link-ogp-card-block a .link-card__detail-col p.link-card__domain {
     margin-bottom: 0;
     font-weight: bold;
     color: #aaa;

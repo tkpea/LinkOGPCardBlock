@@ -5,7 +5,7 @@ import { TextControl, Button, ExternalLink } from '@wordpress/components';
 import { sprintf, _n } from '@wordpress/i18n';
 import axios from 'axios'
 
-registerBlockType ( 'tk/ogp-card-block', {
+registerBlockType ( 'tk/link-ogp-card-block', {
     title: 'LinkOGPCard',
     icon: 'feedback',
     category: 'layout',
