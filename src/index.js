@@ -52,7 +52,7 @@ registerBlockType ( 'tk/link-ogp-card-block', {
             }
         }
         getOGP(){
-            if(!this.props.attributes.url.match(/^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/)) {
+            if(!this.props.attributes.url.match(/^(https?)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/)) {
                 alert("Please enter a valid URL.");
                 return false;
             } else {
