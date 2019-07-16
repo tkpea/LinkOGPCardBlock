@@ -1,7 +1,7 @@
 const { registerBlockType } = wp.blocks;
 const { Component } = wp.element;
 const { RichText} = wp.editor;
-import { TextControl, Button, ExternalLink } from '@wordpress/components';
+import { TextControl, Button} from '@wordpress/components';
 import { sprintf, _n } from '@wordpress/i18n';
 import axios from 'axios'
 
@@ -16,8 +16,7 @@ registerBlockType ( 'tk/link-ogp-card-block', {
 			selector: '.link-card__title',
         },
 		url: {
-			type: 'string',
-			source: 'children',
+            attribute: 'href',
 			selector: '.link-card__anchor',
         }, 
 		description: {
@@ -31,8 +30,6 @@ registerBlockType ( 'tk/link-ogp-card-block', {
             selector: '.link-card__domain',
 		},                        
 		imageSrc: {
-			type: 'string',
-			source: 'attribute',
 			selector: '.link-card__image',
 			attribute: 'src',
         },
@@ -106,17 +103,17 @@ registerBlockType ( 'tk/link-ogp-card-block', {
                 return (
                     <div className={ this.props.className }>
                         <a href={this.props.attributes.url} target="_blank">
-                       
                             {(() => {
                                 if (this.props.attributes.imageSrc){
                                     return (
                                         <div className="link-card__thumbnail-col">
+                                        <figure className="link-card_figure">
                                         <img className="link-card__image" src={ this.props.attributes.imageSrc }  alt={ this.props.attributes.imageAlt } /> 
+                                        </figure>
                                         </div>
                                     )
                                 }
                             }) () }
-
                             <div class="link-card__detail-col">
                                 <div class="link-card__content">
                                     <RichText.Content tagName="p" className="link-card__title" value={ this.props.attributes.title } />
@@ -144,25 +141,24 @@ registerBlockType ( 'tk/link-ogp-card-block', {
         } = props
         return (
             <div className={ className }>
-                <a href={url} target="_blank" className="link-card__anchor">
-                {(() => {
-                    if (imageSrc){
-                        return (
+                
+                <a href={url} className="link-card__anchor" target="_blank" rel="noopener noreferrer">
+
                             <div className="link-card__thumbnail-col">
-                            <img className="link-card__image" src={ imageSrc  } alt={ imageAlt }  /> 
+                                <figure className="link-card_figure">
+                                    <img className="link-card__image" src={ imageSrc  } alt={ imageAlt }  /> 
+                                </figure>
                             </div>
-                        )
-                    }
-                }) () }                    
+                            
      
                     <div class="link-card__detail-col">
                         <div class="link-card__content">
                             <p className="link-card__title">{title}</p>
-                            <RichText.Content tagName="p" className="link-card__description" value={ description } />
+                            <p className="link-card__description">{ description }  </p>
                         </div>
-                        <RichText.Content tagName="p" className="link-card__domain" value={ domain } />
+                        <p className="link-card__domain">{ domain }  </p>
                     </div>
-                </a>
+                    </a>
             </div>
         )
     }
